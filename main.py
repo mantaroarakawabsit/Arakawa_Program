@@ -1,4 +1,6 @@
-# Binary Tree - ARAKAWA
+
+# Assessment 3.6: DFS Methods in Tree
+# Last Name: ARAKAWA
 
 class Node:
     def __init__(self, data):
@@ -7,8 +9,9 @@ class Node:
         self.right = None
 
 
-# Create Binary Tree
+# Create Binary Tree using ARAKAWA
 root = Node("A0")
+
 root.left = Node("R")
 root.right = Node("A1")
 
@@ -19,36 +22,38 @@ root.right.left = Node("W")
 root.right.right = Node("A3")
 
 
-# BFS Traversal
-def BFS(root):
-    queue = [root]
-
-    print("BFS Traversal:")
-
-    while queue:
-        node = queue.pop(0)
+# PREORDER: Root - Left - Right
+def preorder(node):
+    if node is not None:
         print(node.data, end=" ")
-
-        if node.left:
-            queue.append(node.left)
-
-        if node.right:
-            queue.append(node.right)
-
-    print()
+        preorder(node.left)
+        preorder(node.right)
 
 
-# DFS Traversal
-def DFS(node):
-    if node:
+# INORDER: Left - Root - Right
+def inorder(node):
+    if node is not None:
+        inorder(node.left)
         print(node.data, end=" ")
-        DFS(node.left)
-        DFS(node.right)
+        inorder(node.right)
+
+
+# POSTORDER: Left - Right - Root
+def postorder(node):
+    if node is not None:
+        postorder(node.left)
+        postorder(node.right)
+        print(node.data, end=" ")
 
 
 # Display Results
-BFS(root)
+print("PREORDER TRAVERSAL:")
+preorder(root)
 
-print("DFS Traversal:")
-DFS(root)
+print("\n\nINORDER TRAVERSAL:")
+inorder(root)
+
+print("\n\nPOSTORDER TRAVERSAL:")
+postorder(root)
+
 print()
